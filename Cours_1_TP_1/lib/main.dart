@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'My Application',
       theme: ThemeData(
         appBarTheme: const AppBarThemeData(centerTitle: false),
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: const LoginPage(),
     );
