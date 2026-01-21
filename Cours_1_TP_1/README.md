@@ -1,16 +1,9 @@
-# cours_01
+# cours_01 TP 1
 
-Template 1er cours
+Premier TP d'App Mobile
 
-## Getting Started
+# Sources
 
-This project is a starting point for a Flutter application.
+https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html
+https://www.youtube.com/watch?v=Qh9IyIK-tls&t=372s
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
