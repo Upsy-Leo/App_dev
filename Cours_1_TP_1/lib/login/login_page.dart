@@ -15,6 +15,8 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children:[
               Container(
+                width: 800,
+                height: 500,
                 child: Form(child: Column(
                   children: [
                     Email(mailController)
@@ -46,7 +48,7 @@ class Email extends StatelessWidget{
           borderRadius: BorderRadius.circular(20),
         ),
         filled: true,
-        fillColor: Colors.grey,
+        fillColor: Colors.grey.shade50,
       ),
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
