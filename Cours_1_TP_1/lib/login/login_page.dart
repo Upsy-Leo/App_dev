@@ -19,7 +19,9 @@ class LoginPage extends StatelessWidget {
                 height: 500,
                 child: Form(child: Column(
                   children: [
-                    Email(mailController)
+                    Email(mailController),
+                    SizedBox(height: 16),
+                    Bouton_Continuer(),
                   ],
                 )),
               )
@@ -55,4 +57,28 @@ class Email extends StatelessWidget{
     );
   }
 
+}
+
+class Bouton_Continuer extends StatelessWidget{
+  const Bouton_Continuer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 800,
+      height: 50,
+      child: ElevatedButton(style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white
+      ),
+       onPressed: () {  },
+       child: const Text(
+        'Se connecter',
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 16,),
+       )),
+    );
+      
+  }
 }
