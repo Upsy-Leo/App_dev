@@ -9,7 +9,7 @@ class LoginPage extends StatelessWidget {
     final mailController = TextEditingController();
 
     return Scaffold(appBar: AppBar.new(
-      title: const Text("Log in or Sign up", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w700)),
+      title: const Text("Log in or Sign up", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700)),
       ),
       body: Center(
         child: Column(
@@ -23,8 +23,14 @@ class LoginPage extends StatelessWidget {
                     Email(mailController),
                     SizedBox(height: 16),
                     Bouton_Continuer(),
+                    SizedBox(height: 25),
+                    Separation_or(),
                     SizedBox(height: 16),
                     Bouton_Apple(),
+                    SizedBox(height: 16),
+                    Bouton_Google(),
+                    SizedBox(height: 16),
+                    Bouton_Facebook()
                   ],
                 )),
               )
@@ -115,6 +121,92 @@ class Bouton_Apple extends StatelessWidget{
        ),
     ));
       
+  }
+}
+
+class Bouton_Google extends StatelessWidget{
+  const Bouton_Google({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 800,
+      height: 50,
+      child: ElevatedButton(style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      ),
+       onPressed: () {  } as VoidCallback?,
+       child: Row(
+         mainAxisAlignment: MainAxisAlignment.center,
+         children: [
+           SvgPicture.asset('assets/google_logo.svg', width: 24, height: 24),
+           const SizedBox(width: 12),
+           const Text(
+            'Continue with Google',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 16,),
+           ),
+         ],
+       ),
+    ));
+      
+  }
+}
+
+class Bouton_Facebook extends StatelessWidget{
+  const Bouton_Facebook({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 800,
+      height: 50,
+      child: ElevatedButton(style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      ),
+       onPressed: () {  } as VoidCallback?,
+       child: Row(
+         mainAxisAlignment: MainAxisAlignment.center,
+         children: [
+           SvgPicture.asset('assets/facebook_logo.svg', width: 24, height: 24),
+           const SizedBox(width: 12),
+           const Text(
+            'Continue with Facebook',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 16,),
+           ),
+         ],
+       ),
+    ));
+      
+  }
+}
+
+class Separation_or extends StatelessWidget{
+  const Separation_or({super.key});
+
+  @override
+  Widget build(BuildContext context){
+    return SizedBox(
+      width: 800,
+      height: 50,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Text(
+            'OR',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
+        ],
+        ),
+    );
   }
 }
 
