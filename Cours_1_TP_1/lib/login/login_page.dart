@@ -1,3 +1,4 @@
+import 'package:cours_01/res/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -53,13 +54,19 @@ class Email extends StatelessWidget{
     return TextFormField(
       controller: mail,
       decoration: InputDecoration(
-        labelText: 'Email',
         prefixIcon: const Icon(Icons.email_outlined),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
         filled: true,
         fillColor: Colors.grey.shade50,
+        hintText: 'Enter your email',
+        hintStyle: TextStyle(
+          color: AppColors.textSecondary,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
       ),
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
@@ -76,9 +83,9 @@ class Bouton_Continuer extends StatelessWidget{
     return SizedBox(
       width: 800,
       height: 50,
-      child: ElevatedButton(style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white
+      child: FilledButton(style: FilledButton.styleFrom(
+        backgroundColor: AppColors.buttonPrimaryBackground,
+        foregroundColor: AppColors.buttonPrimaryText
       ),
        onPressed: () { },
        child: const Text(
@@ -202,6 +209,7 @@ class Separation_or extends StatelessWidget{
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
+              color: AppColors.textSecondary
             ),
           ),
         ],
