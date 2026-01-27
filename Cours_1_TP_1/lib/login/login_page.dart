@@ -27,11 +27,12 @@ class LoginPage extends StatelessWidget {
                     SizedBox(height: 25),
                     Separation_or(),
                     SizedBox(height: 16),
-                    Bouton_Apple(),
+                    Bouton_Continuer_avec(appli: 'Apple', icon: 'assets/apple_logo.svg', onPressed: () {}),
                     SizedBox(height: 16),
-                    Bouton_Google(),
+                    Bouton_Continuer_avec(appli: 'Google', icon: 'assets/google_logo.svg', onPressed: () {}),
                     SizedBox(height: 16),
-                    Bouton_Facebook()
+                    Bouton_Continuer_avec(appli: 'Facebook', icon: 'assets/facebook_logo.svg', onPressed: () {}),
+                    SizedBox(height: 16),
                   ],
                 )),
               )
@@ -100,8 +101,15 @@ class Bouton_Continuer extends StatelessWidget{
   }
 }
 
-class Bouton_Apple extends StatelessWidget{
-  const Bouton_Apple({super.key});
+class Bouton_Continuer_avec extends StatelessWidget{
+  
+
+  final String appli;
+  final String icon;
+  final VoidCallback onPressed;
+
+  const Bouton_Continuer_avec({super.key, required this.appli, required this.icon, required this.onPressed});
+
 
   @override
   Widget build(BuildContext context) {
@@ -112,77 +120,15 @@ class Bouton_Apple extends StatelessWidget{
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
-       onPressed: () {  } as VoidCallback?,
+       onPressed: onPressed,
        child: Row(
          mainAxisAlignment: MainAxisAlignment.center,
          children: [
-           SvgPicture.asset('assets/apple_logo.svg', width: 24, height: 24),
+           SvgPicture.asset(icon, width: 24, height: 24),
            const SizedBox(width: 12),
-           const Text(
-            'Continue with Apple',
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 16,),
-           ),
-         ],
-       ),
-    ));
-      
-  }
-}
-
-class Bouton_Google extends StatelessWidget{
-  const Bouton_Google({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 800,
-      height: 50,
-      child: ElevatedButton(style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-      ),
-       onPressed: () {  } as VoidCallback?,
-       child: Row(
-         mainAxisAlignment: MainAxisAlignment.center,
-         children: [
-           SvgPicture.asset('assets/google_logo.svg', width: 24, height: 24),
-           const SizedBox(width: 12),
-           const Text(
-            'Continue with Google',
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 16,),
-           ),
-         ],
-       ),
-    ));
-      
-  }
-}
-
-class Bouton_Facebook extends StatelessWidget{
-  const Bouton_Facebook({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 800,
-      height: 50,
-      child: ElevatedButton(style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-      ),
-       onPressed: () {  } as VoidCallback?,
-       child: Row(
-         mainAxisAlignment: MainAxisAlignment.center,
-         children: [
-           SvgPicture.asset('assets/facebook_logo.svg', width: 24, height: 24),
-           const SizedBox(width: 12),
-           const Text(
-            'Continue with Facebook',
-            style: TextStyle(
+           Text(
+            'Continue with $appli',
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 16,),
            ),
