@@ -2,12 +2,23 @@ import 'package:cours_01/res/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget{
   const LoginPage({super.key});
 
   @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  
+
+  final mailController = TextEditingController();
+
+    String _email = '';
+
+  @override
   Widget build(BuildContext context) {
-    final mailController = TextEditingController();
+    
 
     return Scaffold(appBar: AppBar.new(
       title: const Text("Log in or Sign up", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700)),
@@ -21,9 +32,18 @@ class LoginPage extends StatelessWidget {
                 height: 500,
                 child: Form(child: Column(
                   children: [
-                    Email(mailController),
+                    Email(mail: mailController, onChanged: (value){
+                      setState(() {
+                        _email = value;
+                      });
+                    },),
                     SizedBox(height: 16),
-                    Bouton_Continuer(),
+                    Bouton_Continuer(
+                      onPressed: _email.isNotEmpty? () {
+                        print("Bouton continuer appuyé");
+                      }
+                      : null,
+                    ),
                     SizedBox(height: 25),
                     Separation_or(),
                     SizedBox(height: 16),
@@ -47,20 +67,23 @@ class LoginPage extends StatelessWidget {
 class Email extends StatelessWidget{
 
   final TextEditingController mail;
+  final ValueChanged<String> onChanged;
+  
 
-  const Email(this.mail);
+  const Email({super.key, required this.mail, required this.onChanged});
 
   @override
   Widget build(BuildContext context){
     return TextFormField(
       controller: mail,
+      onChanged: onChanged,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.email_outlined),
         filled: true,
         fillColor: Colors.grey.shade50,
         hintText: 'Enter your email',
         hintStyle: TextStyle(
-          color: AppColors.textSecondary,
+          color: AppColors.textPrimary,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -77,7 +100,9 @@ class Email extends StatelessWidget{
 }
 
 class Bouton_Continuer extends StatelessWidget{
-  const Bouton_Continuer({super.key});
+  final VoidCallback? onPressed;
+
+  const Bouton_Continuer({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -86,9 +111,10 @@ class Bouton_Continuer extends StatelessWidget{
       height: 50,
       child: FilledButton(style: FilledButton.styleFrom(
         backgroundColor: AppColors.buttonPrimaryBackground,
-        foregroundColor: AppColors.buttonPrimaryText
+        foregroundColor: AppColors.buttonPrimaryText,
+        disabledBackgroundColor: Colors.grey.shade300,
       ),
-       onPressed: () { },
+       onPressed: onPressed,
        child: const Text(
             'Continue',
             style: TextStyle(
@@ -126,12 +152,12 @@ class Bouton_Continuer_avec extends StatelessWidget{
          children: [
            SvgPicture.asset(icon, width: 24, height: 24),
            const SizedBox(width: 12),
-           Text(
+           Expanded(child: Text(
             'Continue with $appli',
             style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 16,),
-           ),
+           ),),
          ],
        ),
     ));
@@ -150,6 +176,7 @@ class Separation_or extends StatelessWidget{
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
+          Divider(height: 50, thickness: 20,),
           Text(
             'OR',
             style: TextStyle(
@@ -158,6 +185,7 @@ class Separation_or extends StatelessWidget{
               color: AppColors.textSecondary
             ),
           ),
+          Divider(height: 50, thickness: 20,),
         ],
         ),
     );

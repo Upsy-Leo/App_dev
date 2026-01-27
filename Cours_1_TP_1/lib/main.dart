@@ -1,4 +1,5 @@
 import 'package:cours_01/login/login_page.dart';
+import 'package:cours_01/res/colors.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +16,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarThemeData(centerTitle: true),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white70),
+        dividerColor: AppColors.textSecondary,
       ),
+
       home: const LoginPage(),
     );
   }
