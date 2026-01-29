@@ -12,54 +12,61 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox.expand(
-        child: Stack(
-          children: [
-            PositionedDirectional(
-              top: 0.0,
-              start: 0.0,
-              end: 0.0,
-              height: IMAGE_HEIGHT,
-              child: Image.network(
-                'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1310&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                fit: BoxFit.cover,
-                cacheHeight:
-                    (IMAGE_HEIGHT * MediaQuery.devicePixelRatioOf(context))
-                        .toInt(),
-              ),
-            ),
-            PositionedDirectional(
-              top: IMAGE_HEIGHT - 16.0,
-              start: 0.0,
-              end: 0.0,
-              bottom: 0.0,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(16.0),
-                  ),
-                  color: Colors.white,
-                ),
-                padding: EdgeInsetsDirectional.symmetric(
-                  horizontal: 20.0,
-                  vertical: 30.0,
-                ),
-                child: Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    Text(
-                      'Petits pois et carottes',
-                      style: context.theme.title1,
+    return ProductInh(
+      product: generateProduct(),
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            body: SizedBox.expand(
+              child: Stack(
+                children: [
+                  PositionedDirectional(
+                    top: 0.0,
+                    start: 0.0,
+                    end: 0.0,
+                    height: IMAGE_HEIGHT,
+                    child: Image.network(
+                      ProductInh.of(context).product.picture ?? '',
+                      fit: BoxFit.cover,
+                      cacheHeight:
+                          (IMAGE_HEIGHT * MediaQuery.devicePixelRatioOf(context))
+                              .toInt(),
                     ),
-                    Text('Cassegrain', style: context.theme.title2),
-                    Scores(),
-                  ],
-                ),
+                  ),
+                  PositionedDirectional(
+                    top: IMAGE_HEIGHT - 16.0,
+                    start: 0.0,
+                    end: 0.0,
+                    bottom: 0.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16.0),
+                        ),
+                        color: Colors.white,
+                      ),
+                      padding: EdgeInsetsDirectional.symmetric(
+                        horizontal: 20.0,
+                        vertical: 30.0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            ProductInh.of(context).product.name ?? '',
+                            style: context.theme.title1,
+                          ),
+                          Text(ProductInh.of(context).product.brands?.join(', ') ?? '', style: context.theme.title2),
+                          Scores(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          );
+        }
       ),
     );
   }
@@ -70,26 +77,29 @@ class Scores extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final product = ProductInh.of(context).product;
+
     return Column(
       children: [
         IntrinsicHeight(
           child: Row(
-            crossAxisAlignment: .start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 flex: 44,
-                child: _Nutriscore(nutriscore: ProductNutriScore.B),
+                child: _Nutriscore(nutriscore: product.nutriScore ?? ProductNutriScore.unknown),
               ),
               VerticalDivider(),
               Expanded(
                 flex: 56,
-                child: _NovaGroup(novaScore: ProductNovaScore.group4),
+                child: _NovaGroup(novaScore: product.novaScore ?? ProductNovaScore.unknown),
               ),
             ],
           ),
         ),
         Divider(),
-        _GreenScore(greenScore: ProductGreenScore.A),
+        _GreenScore(greenScore: product.greenScore ?? ProductGreenScore.unknown),
       ],
     );
   }
@@ -234,6 +244,25 @@ class _GreenScore extends StatelessWidget {
   }
 }
 
+class ProductInh extends InheritedWidget{
+  const ProductInh({super.key, required Widget child, required this.product})
+    : super(child:child);
+
+  final Product product;
+
+  static ProductInh of(BuildContext context){
+    final ProductInh? result = context
+    .dependOnInheritedWidgetOfExactType<ProductInh>();
+    assert(result != null, 'No ProductInh found in context');
+    return result!;
+  }
+  
+  @override
+  bool updateShouldNotify(ProductInh old) {
+    return product != old.product;
+  }
+}
+
 class Test extends StatefulWidget {
   const Test({super.key});
 
@@ -247,3 +276,4 @@ class _TestState extends State<Test> {
     return const Placeholder();
   }
 }
+
