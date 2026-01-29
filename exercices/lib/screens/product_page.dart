@@ -259,3 +259,16 @@ class _EcranChargement extends StatelessWidget{
     );
   }
 }
+
+class ProductNotifier extends ChangeNotifier{
+  Product? _product = null;
+
+  Product? get product => _product;
+
+  void loadProduct(){
+    _product = generateProduct();
+    notifyListeners();
+  }
+
+  
+}
