@@ -4,6 +4,7 @@ import 'package:formation_flutter/model/product.dart';
 import 'package:formation_flutter/res/app_colors.dart';
 import 'package:formation_flutter/res/app_icons.dart';
 import 'package:formation_flutter/res/app_theme_extension.dart';
+import 'package:provider/provider.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});
@@ -12,58 +13,65 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isLoading = false;
-
-    return Scaffold(
-      body:  isLoading ? const _EcranChargement() : SizedBox.expand(
-        child: Stack(
-          children: [
-            PositionedDirectional(
-              top: 0.0,
-              start: 0.0,
-              end: 0.0,
-              height: IMAGE_HEIGHT,
-              child: Image.network(
-                'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1310&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                fit: BoxFit.cover,
-                cacheHeight:
-                    (IMAGE_HEIGHT * MediaQuery.devicePixelRatioOf(context))
-                        .toInt(),
+    return ChangeNotifierProvider(
+      create: (_) => ProductNotifier(),
+      child: Scaffold(
+        body:  Consumer<ProductNotifier>(builder: (context, notifier, child) {
+          final product = notifier.product;
+          if(product == null){
+            return const _EcranChargement();
+          }
+          return SizedBox(
+            child: Stack(
+            children: [
+              PositionedDirectional(
+                top: 0.0,
+                start: 0.0,
+                end: 0.0,
+                height: IMAGE_HEIGHT,
+                child: Image.network(
+                  notifier.product?.picture ?? '',
+                  fit: BoxFit.cover,
+                  cacheHeight:
+                      (IMAGE_HEIGHT * MediaQuery.devicePixelRatioOf(context))
+                          .toInt(),
+                ),
               ),
-            ),
-            PositionedDirectional(
-              top: IMAGE_HEIGHT - 16.0,
-              start: 0.0,
-              end: 0.0,
-              bottom: 0.0,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(16.0),
-                  ),
-                  color: Colors.white,
-                ),
-                padding: EdgeInsetsDirectional.symmetric(
-                  horizontal: 20.0,
-                  vertical: 30.0,
-                ),
-                child: Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    Text(
-                      'Petits pois et carottes',
-                      style: context.theme.title1,
+              PositionedDirectional(
+                top: IMAGE_HEIGHT - 16.0,
+                start: 0.0,
+                end: 0.0,
+                bottom: 0.0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(16.0),
                     ),
-                    Text('Cassegrain', style: context.theme.title2),
-                    Scores(),
-                  ],
+                    color: Colors.white,
+                  ),
+                  padding: EdgeInsetsDirectional.symmetric(
+                    horizontal: 20.0,
+                    vertical: 30.0,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [
+                      Text(
+                        notifier.product?.name ?? '',
+                        style: context.theme.title1,
+                      ),
+                      Text(notifier.product?.brands?.join(', ') ?? '', style: context.theme.title2),
+                      Scores(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
+          );
+        },)
         ),
-      ),
-    );
+      );
   }
 }
 
@@ -80,18 +88,18 @@ class Scores extends StatelessWidget {
             children: [
               Expanded(
                 flex: 44,
-                child: _Nutriscore(nutriscore: ProductNutriScore.B),
+                child: _Nutriscore(nutriscore: Provider.of<ProductNotifier>(context).product?.nutriScore ?? ProductNutriScore.unknown),
               ),
               VerticalDivider(),
               Expanded(
                 flex: 56,
-                child: _NovaGroup(novaScore: ProductNovaScore.group4),
+                child: _NovaGroup(novaScore: Provider.of<ProductNotifier>(context).product?.novaScore ?? ProductNovaScore.unknown),
               ),
             ],
           ),
         ),
         Divider(),
-        _GreenScore(greenScore: ProductGreenScore.A),
+        _GreenScore(greenScore: Provider.of<ProductNotifier>(context).product?.greenScore ?? ProductGreenScore.unknown),
       ],
     );
   }
@@ -262,6 +270,10 @@ class _EcranChargement extends StatelessWidget{
 
 class ProductNotifier extends ChangeNotifier{
   Product? _product = null;
+
+  ProductNotifier(){
+    loadProduct();
+  }
 
   Product? get product => _product;
 
