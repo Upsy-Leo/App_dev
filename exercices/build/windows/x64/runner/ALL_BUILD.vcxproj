@@ -21,7 +21,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5AE44242-9262-3D64-9987-3EFA38B8D91A}</ProjectGuid>
+    <ProjectGuid>{CA08A8EC-3772-36B4-9D63-22CCD39BDBB8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -88,11 +88,11 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\leopo\projets_github\App_dev\Cours_2_TP_2\windows\runner\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\leopo\projets_github\App_dev\exercices\windows\runner\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/leopo/projets_github/App_dev/Cours_2_TP_2/windows/runner/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/leopo/projets_github/App_dev/exercices/windows/runner/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/leopo/projets_github/App_dev/Cours_2_TP_2/windows -BC:/Users/leopo/projets_github/App_dev/Cours_2_TP_2/build/windows/x64 --check-stamp-file C:/Users/leopo/projets_github/App_dev/Cours_2_TP_2/build/windows/x64/runner/CMakeFiles/generate.stamp
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/leopo/projets_github/App_dev/exercices/windows -BC:/Users/leopo/projets_github/App_dev/exercices/build/windows/x64 --check-stamp-file C:/Users/leopo/projets_github/App_dev/exercices/build/windows/x64/runner/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -101,11 +101,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\leopo\projets_github\App_dev\Cours_2_TP_2\build\windows\x64\runner\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\leopo\projets_github\App_dev\exercices\build\windows\x64\runner\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">Building Custom Rule C:/Users/leopo/projets_github/App_dev/Cours_2_TP_2/windows/runner/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">Building Custom Rule C:/Users/leopo/projets_github/App_dev/exercices/windows/runner/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">setlocal
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/leopo/projets_github/App_dev/Cours_2_TP_2/windows -BC:/Users/leopo/projets_github/App_dev/Cours_2_TP_2/build/windows/x64 --check-stamp-file C:/Users/leopo/projets_github/App_dev/Cours_2_TP_2/build/windows/x64/runner/CMakeFiles/generate.stamp
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/leopo/projets_github/App_dev/exercices/windows -BC:/Users/leopo/projets_github/App_dev/exercices/build/windows/x64 --check-stamp-file C:/Users/leopo/projets_github/App_dev/exercices/build/windows/x64/runner/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -114,11 +114,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">C:\Users\leopo\projets_github\App_dev\Cours_2_TP_2\build\windows\x64\runner\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">C:\Users\leopo\projets_github\App_dev\exercices\build\windows\x64\runner\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/leopo/projets_github/App_dev/Cours_2_TP_2/windows/runner/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/leopo/projets_github/App_dev/exercices/windows/runner/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/leopo/projets_github/App_dev/Cours_2_TP_2/windows -BC:/Users/leopo/projets_github/App_dev/Cours_2_TP_2/build/windows/x64 --check-stamp-file C:/Users/leopo/projets_github/App_dev/Cours_2_TP_2/build/windows/x64/runner/CMakeFiles/generate.stamp
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/leopo/projets_github/App_dev/exercices/windows -BC:/Users/leopo/projets_github/App_dev/exercices/build/windows/x64 --check-stamp-file C:/Users/leopo/projets_github/App_dev/exercices/build/windows/x64/runner/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -127,7 +127,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\leopo\projets_github\App_dev\Cours_2_TP_2\build\windows\x64\runner\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\leopo\projets_github\App_dev\exercices\build\windows\x64\runner\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
@@ -135,14 +135,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="C:\Users\leopo\projets_github\App_dev\Cours_2_TP_2\build\windows\x64\ZERO_CHECK.vcxproj">
-      <Project>{116B2A05-56B4-31D2-876D-56AAD8017D24}</Project>
+    <ProjectReference Include="C:\Users\leopo\projets_github\App_dev\exercices\build\windows\x64\ZERO_CHECK.vcxproj">
+      <Project>{2B169BCF-FACA-333A-BD50-EA270478ECA0}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\leopo\projets_github\App_dev\Cours_2_TP_2\build\windows\x64\runner\formation_flutter.vcxproj">
-      <Project>{E24AD72D-846B-3F59-8F10-09A2526B8C3E}</Project>
+    <ProjectReference Include="C:\Users\leopo\projets_github\App_dev\exercices\build\windows\x64\runner\formation_flutter.vcxproj">
+      <Project>{82839EF4-8E58-324A-9C70-D841DACCFCD0}</Project>
       <Name>formation_flutter</Name>
     </ProjectReference>
   </ItemGroup>

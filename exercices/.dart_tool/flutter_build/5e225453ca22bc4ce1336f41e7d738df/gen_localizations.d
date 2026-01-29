@@ -1,1 +1,0 @@
- C:\\Users\\leopo\\projets_github\\App_dev\\Cours_2_TP_2\\lib\\l10n\\app_localizations_fr.dart C:\\Users\\leopo\\projets_github\\App_dev\\Cours_2_TP_2\\lib\\l10n\\app_localizations.dart:  C:\\Users\\leopo\\projets_github\\App_dev\\Cours_2_TP_2\\l10n.yaml C:\\Users\\leopo\\projets_github\\App_dev\\Cours_2_TP_2\\lib\\l10n\\app_fr.arb

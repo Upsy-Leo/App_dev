@@ -12,8 +12,10 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isLoading = false;
+
     return Scaffold(
-      body: SizedBox.expand(
+      body:  isLoading ? const _EcranChargement() : SizedBox.expand(
         child: Stack(
           children: [
             PositionedDirectional(
@@ -245,5 +247,15 @@ class _TestState extends State<Test> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
+  }
+}
+
+class _EcranChargement extends StatelessWidget{
+  const _EcranChargement();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: CircularProgressIndicator(),
+    );
   }
 }
