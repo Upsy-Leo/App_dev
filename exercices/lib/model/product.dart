@@ -271,3 +271,207 @@ Product generateProduct() => Product(
     salt: Nutriment(unit: 'g', perServing: 0.1, per100g: 0.1),
   ),
 );
+
+class Response {
+  final Product_API? produit;
+
+  Response({this.produit})
+}
+
+class Product_API {
+  final String barcode;
+  final String? name;
+  final String? altName;
+  final List<String>? brands;
+  final String? nutriScore;
+  final int? novaScore;
+  final String? quantity;
+  final List<String>? stores;
+  final List<String>? countries;
+  final String? manufacturingCountries;
+  final int? ecoScore;
+  final String? ecoScoreGrade;
+  final int? nutritionScore;
+  final ProductPictures? pictures;
+  final ProductIngredients? ingredients;
+  final List<String>? traces;
+  final List<String, String>? additives;
+  final
+
+  Product_API({
+    required this.barcode,
+    this.name,
+    this.altName,
+    this.brands,
+    this.nutriScore,
+    this.novaScore,
+    this.pictures,
+    this.ingredients, 
+    this.quantity, 
+    this.stores, 
+    this.countries, 
+    this.manufacturingCountries, 
+    this.ecoScore, 
+    this.ecoScoreGrade, 
+    this.nutritionScore, 
+  })
+
+}
+
+class ProductPictures{
+  final String? product;
+  final String? front;
+  final String? ingredients;
+  final String? nutrition;
+
+  ProductPictures({
+    this.product,
+    this.front,
+    this.ingredients,
+    this.nutrition,
+  })
+}
+
+class ProductIngredients {
+  final List<String>? list;
+  final bool? containsPalmOil;
+  final String? whitAllegergens;
+  final List<ProductDetails>? details;
+
+  ProductIngredients({
+    this.list,
+    this.containsPalmOil,
+    this.whitAllegergens,
+    this.details,
+  })
+
+}
+
+class ProductDetails{
+  final bool? vegan;
+  final bool? vegetarian;
+  final bool? containsPalmOil;
+  final int? percent;
+  final String? value;
+
+  ProductDetails({
+    this.vegan,
+    this.vegetarian,
+    this.containsPalmOil,
+    this.percent,
+    this.value,
+  })
+}
+
+class nutrientLevels{
+  final nutrientLevelsItems? fat;
+  final nutrientLevelsItems? salt;
+  final nutrientLevelsItems? saturatedFat;
+  final nutrientLevelsItems? sugars;
+
+  nutrientLevels({
+    this.fat,
+    this.salt,
+    this.saturatedFat,
+    this.sugars,
+  })
+}
+
+class nutrientLevelsItems{
+  final String? level;
+  final double? per100g;
+
+  nutrientLevelsItems({
+    this.level,
+    this.per100g,
+  })
+}
+
+class nutritionFacts{
+  final String? servingSize;
+  final int? calories;
+  final nutritionFactsItems? fat;
+  final nutritionFactsItems? saturatedFat;
+  final nutritionFactsItems? carbohydrate;
+  final nutritionFactsItems? sugar;
+  final nutritionFactsItems? fiber;
+  final nutritionFactsItems? proteins;
+  final nutritionFactsItems? sodium;
+  final nutritionFactsItems? salt;
+  final nutritionFactsItems? energy;
+
+  nutritionFacts({
+    this.servingSize,
+    this.calories,
+    this.fat,
+    this.saturatedFat,
+    this.carbohydrate,
+    this.sugar,
+    this.fiber,
+    this.proteins,
+    this.sodium,
+    this.salt,
+    this.energy
+  })
+}
+
+class nutritionFactsItems{
+  final String? unit;
+  final double? perServing;
+  final double? per100g;
+
+  nutritionFactsItems({
+    this.unit,
+    this.perServing,
+    this.per100g,
+  })
+}
+
+class ProductLevels{
+  final ProductLevel? energy;
+  final ProductLevel? fiber;
+  final ProductLevel? fruitsVegetablesLegumes;
+  final ProductLevel? proteins;
+  final ProductLevel? salt;
+  final ProductLevel? saturatedFat;
+  final ProductLevel? sugars;
+
+  ProductLevels({
+    this.energy,
+    this.fiber,
+    this.fruitsVegetablesLegumes,
+    this.proteins,
+    this.salt,
+    this.saturatedFat,
+    this.sugars,
+  })
+
+}
+
+class ProductLevel{
+  final int? points;
+  final int? maxPoints;
+  final String? unit;
+  final double? value;
+  final String? type;
+
+  ProductLevel({
+    this.points,
+    this.maxPoints,
+    this.unit,
+    this.value,
+    this.type,
+  })
+}
+
+class ProductAnalyse{
+  final String? palmOil;
+  final String? vegan;
+  final String? vegetarian;
+
+  ProductAnalyse({
+    this.palmOil,
+    this.vegan,
+    this.vegetarian
+  })
+}
