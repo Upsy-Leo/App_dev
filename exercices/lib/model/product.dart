@@ -275,7 +275,7 @@ Product generateProduct() => Product(
 class Response {
   final Product_API? produit;
 
-  Response({this.produit})
+  Response({this.produit});
 }
 
 class Product_API {
@@ -288,15 +288,20 @@ class Product_API {
   final String? quantity;
   final List<String>? stores;
   final List<String>? countries;
-  final String? manufacturingCountries;
+  final List<String>? manufacturingCountries;
   final int? ecoScore;
   final String? ecoScoreGrade;
   final int? nutritionScore;
   final ProductPictures? pictures;
   final ProductIngredients? ingredients;
   final List<String>? traces;
-  final List<String, String>? additives;
-  final
+  final Map<String, String>? additives;
+  final List<String>? allergens;
+  final List<String>? packaging;
+  final ProductAnalyse? analysis;
+  final ProductLevels? levels;
+  final Nutrition_Facts? nutritionFacts;
+  final Nutrient_Levels? NutrientLevels;
 
   Product_API({
     required this.barcode,
@@ -314,9 +319,20 @@ class Product_API {
     this.ecoScore, 
     this.ecoScoreGrade, 
     this.nutritionScore, 
-  })
+    this.traces,
+    this.additives,
+    this.allergens,
+    this.analysis,
+    this.levels,
+    this.nutritionFacts,
+    this.NutrientLevels,
+    this.packaging
+
+  });
 
 }
+
+
 
 class ProductPictures{
   final String? product;
@@ -329,7 +345,7 @@ class ProductPictures{
     this.front,
     this.ingredients,
     this.nutrition,
-  })
+  });
 }
 
 class ProductIngredients {
@@ -343,7 +359,7 @@ class ProductIngredients {
     this.containsPalmOil,
     this.whitAllegergens,
     this.details,
-  })
+  });
 
 }
 
@@ -360,47 +376,47 @@ class ProductDetails{
     this.containsPalmOil,
     this.percent,
     this.value,
-  })
+  });
 }
 
-class nutrientLevels{
-  final nutrientLevelsItems? fat;
-  final nutrientLevelsItems? salt;
-  final nutrientLevelsItems? saturatedFat;
-  final nutrientLevelsItems? sugars;
+class Nutrient_Levels{
+  final NutrientLevelsItems? fat;
+  final NutrientLevelsItems? salt;
+  final NutrientLevelsItems? saturatedFat;
+  final NutrientLevelsItems? sugars;
 
-  nutrientLevels({
+  Nutrient_Levels({
     this.fat,
     this.salt,
     this.saturatedFat,
     this.sugars,
-  })
+  });
 }
 
-class nutrientLevelsItems{
+class NutrientLevelsItems{
   final String? level;
   final double? per100g;
 
-  nutrientLevelsItems({
+  NutrientLevelsItems({
     this.level,
     this.per100g,
-  })
+  });
 }
 
-class nutritionFacts{
+class Nutrition_Facts{
   final String? servingSize;
   final int? calories;
-  final nutritionFactsItems? fat;
-  final nutritionFactsItems? saturatedFat;
-  final nutritionFactsItems? carbohydrate;
-  final nutritionFactsItems? sugar;
-  final nutritionFactsItems? fiber;
-  final nutritionFactsItems? proteins;
-  final nutritionFactsItems? sodium;
-  final nutritionFactsItems? salt;
-  final nutritionFactsItems? energy;
+  final NutritionFactsItems? fat;
+  final NutritionFactsItems? saturatedFat;
+  final NutritionFactsItems? carbohydrate;
+  final NutritionFactsItems? sugar;
+  final NutritionFactsItems? fiber;
+  final NutritionFactsItems? proteins;
+  final NutritionFactsItems? sodium;
+  final NutritionFactsItems? salt;
+  final NutritionFactsItems? energy;
 
-  nutritionFacts({
+  Nutrition_Facts({
     this.servingSize,
     this.calories,
     this.fat,
@@ -412,19 +428,19 @@ class nutritionFacts{
     this.sodium,
     this.salt,
     this.energy
-  })
+  });
 }
 
-class nutritionFactsItems{
+class NutritionFactsItems{
   final String? unit;
   final double? perServing;
   final double? per100g;
 
-  nutritionFactsItems({
+  NutritionFactsItems({
     this.unit,
     this.perServing,
     this.per100g,
-  })
+  });
 }
 
 class ProductLevels{
@@ -444,7 +460,7 @@ class ProductLevels{
     this.salt,
     this.saturatedFat,
     this.sugars,
-  })
+  });
 
 }
 
@@ -461,7 +477,7 @@ class ProductLevel{
     this.unit,
     this.value,
     this.type,
-  })
+  });
 }
 
 class ProductAnalyse{
@@ -473,5 +489,5 @@ class ProductAnalyse{
     this.palmOil,
     this.vegan,
     this.vegetarian
-  })
+  });
 }
