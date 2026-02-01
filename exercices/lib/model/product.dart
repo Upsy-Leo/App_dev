@@ -287,14 +287,14 @@ class Product_API {
   final String? altName;
   final List<String>? brands;
   final String? nutriScore;
-  final int? novaScore;
+  final double? novaScore;
   final String? quantity;
   final List<String>? stores;
   final List<String>? countries;
   final List<String>? manufacturingCountries;
-  final int? ecoScore;
+  final double? ecoScore;
   final String? ecoScoreGrade;
-  final int? nutritionScore;
+  final double? nutritionScore;
   final ProductPictures? pictures;
   final ProductIngredients? ingredients;
   final List<String>? traces;
@@ -339,14 +339,14 @@ class Product_API {
     altName = json['altName'],
     brands = json['brands'] != null ? List<String>.from(json['brands']) : null,
     nutriScore = json['nutriScore'],
-    novaScore = json['novaScore'],
+    novaScore = double.tryParse(json['novaScore']?.toString() ?? ''),
     quantity = json['quantity'],
     stores = json['stores'] != null ? List<String>.from(json['stores']) : null,
     countries = json['countries'] != null ? List<String>.from(json['countries']) : null,
     manufacturingCountries = json['manufacturingCountries'] != null ? List<String>.from(json['manufacturingCountries']) : null,
-    ecoScore = json['ecoScore'],
+    ecoScore = double.tryParse(json['ecoScore']?.toString() ?? ''),
     ecoScoreGrade = json['ecoScoreGrade'],
-    nutritionScore = json['nutritionScore'],
+    nutritionScore = double.tryParse(json['nutritionScore']?.toString() ?? ''),
     pictures = json['pictures'] != null ? ProductPictures.fromJson(json['pictures']) : null,
     ingredients = json['ingredients'] != null ? ProductIngredients.fromJson(json['ingredients']) : null,
     traces = (json['traces'] != null && json['traces']['list'] != null) ? List<String>.from(json['traces']['list']) : null,
@@ -407,7 +407,7 @@ class ProductDetails{
   final bool? vegan;
   final bool? vegetarian;
   final bool? containsPalmOil;
-  final int? percent;
+  final double? percent;
   final String? value;
 
   ProductDetails({
@@ -422,7 +422,7 @@ class ProductDetails{
     vegan = json['vegan'],
     vegetarian = json['vegetarian'],
     containsPalmOil = json['containsPalmOil'],
-    percent = int.tryParse(json['percent']?.toString() ?? ''),
+    percent = double.tryParse(json['percent']?.toString() ?? ''),
     value = json['value'];
 }
 
@@ -549,8 +549,8 @@ class ProductLevels{
 }
 
 class ProductLevel{
-  final int? points;
-  final int? maxPoints;
+  final double? points;
+  final double? maxPoints;
   final String? unit;
   final double? value;
   final String? type;
@@ -564,8 +564,8 @@ class ProductLevel{
   });
 
   ProductLevel.fromJson(Map<String, dynamic> json) :
-    points = json['points'],
-    maxPoints = json['maxPoints'],
+    points = double.tryParse(json['points']?.toString() ?? ''),
+    maxPoints = double.tryParse(json['maxPoints']?.toString() ?? ''),
     unit = json['unit'],
     value = double.tryParse(json['value']?.toString() ?? ''),
     type = json['type'];

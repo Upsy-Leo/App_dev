@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:formation_flutter/l10n/app_localizations.dart';
-import 'package:formation_flutter/model/product.dart';
+import 'package:formation_flutter/model/product.dart' hide Response;
 import 'package:formation_flutter/res/app_colors.dart';
 import 'package:formation_flutter/res/app_icons.dart';
 import 'package:formation_flutter/res/app_theme_extension.dart';
 import 'package:provider/provider.dart';
+import 'dart:convert';
+import 'package:dio/dio.dart' hide Response;
+import '../model/product.dart';
+
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});
@@ -270,17 +274,81 @@ class _EcranChargement extends StatelessWidget{
 
 class ProductNotifier extends ChangeNotifier{
   Product? _product = null;
+  bool _isLoading = false;
 
   ProductNotifier(){
-    loadProduct();
+    loadProduct("5000159484695");
   }
 
   Product? get product => _product;
+  bool get isLoading => _isLoading;
 
-  void loadProduct(){
-    _product = generateProduct();
+  Future<void> loadProduct(String barcode) async {
+    _isLoading = true;
     notifyListeners();
+
+    try{
+      final dio = Dio();
+      dio.options.headers['User-Agents'] = 'FormationFlutter - Android - Version 1.0';
+
+      final response = await dio.get(
+        'https://api.formation-flutter.fr/v2/getProduct',
+        queryParameters: {'barcode' : barcode},
+      );
+      if(response.statusCode == 200){
+        final Map<String, dynamic> data = (response.data is String) ? jsonDecode(response.data) : response.data;
+
+        final responseApi = Response.fromJson(data);
+
+        if(responseApi != null){
+          _product = _convertToProduct(responseApi.produit!);
+        }
+      }   
+    }catch(e){
+      debugPrint("Erreur reseau $e");
+    }finally{
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 
-  
+  Product _convertToProduct(Product_API api) {
+    return Product(
+      name: api.name ?? "Nom inconnu",
+      picture: api.pictures?.front,
+      barcode: api.barcode,
+      brands: api.brands,
+      altName: api.altName,
+      nutriScore: _mapNutriScore(api.nutriScore),
+      novaScore: _mapNovaScore(api.novaScore?.toInt()),
+      greenScore : _mapGreenScore(api.ecoScoreGrade),
+    );
+  }
+
+  ProductNutriScore? _mapNutriScore(String? score){
+    if(score == null) return null;
+    return ProductNutriScore.values.firstWhere(
+      (e) => e.name.toLowerCase() == score.toLowerCase(),
+      orElse: () => ProductNutriScore.unknown,
+    );
+  }
+
+  ProductNovaScore? _mapNovaScore(int? score){
+    switch(score){
+      case 1 : return ProductNovaScore.group1;
+      case 2 : return ProductNovaScore.group2;
+      case 3 : return ProductNovaScore.group3;
+      case 4 : return ProductNovaScore.group4;
+      default: return null;
+    }
+  }
+
+  ProductGreenScore? _mapGreenScore(String? score){
+    if (score == 'a+') return ProductGreenScore.APlus;
+    return ProductGreenScore.values.firstWhere(
+    (e) => e.name.toLowerCase() == score?.toLowerCase(),
+    orElse: () => ProductGreenScore.unknown,
+);
+  }
 }
+
